@@ -72,11 +72,13 @@ document.addEventListener("DOMContentLoaded", function () {
           index = id;
         });
       });
-      const check_icon = document.querySelector(".check-icon");
-      check_icon.addEventListener("click", () => {
-        let nextElement = check_icon.nextElementSibling;
-        check_icon.classList.toggle("active");
-        nextElement.classList.toggle("active");
+      const check_icons = document.querySelectorAll(".check-icon");
+      check_icons.forEach((check_icon) => {
+        check_icon.addEventListener("click", () => {
+          let nextElement = check_icon.nextElementSibling;
+          check_icon.classList.toggle("active");
+          nextElement.classList.toggle("active");
+        });
       });
     } else {
       container.style.height = "200px";
