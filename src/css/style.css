@@ -1,0 +1,245 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&family=Rubik:wght@300;400;500;600;700;800&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+.container {
+  width: 100%;
+  height: 100vh;
+  background-color: #3a86ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.container .row {
+  width: 90vw;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 20px;
+  border-radius: 10px;
+}
+.container .row form {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.row form input {
+  width: 100%;
+  border: 1px solid #ccc;
+  outline: none;
+  padding: 8px 15px;
+  font-size: 13px;
+  border-radius: 4px;
+}
+form button,
+#deleteauthbtn {
+  width: 150px;
+  padding: 8px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  gap: 5px;
+  font-size: 13px;
+  background: #f72585;
+  color: #fff;
+}
+#deleteauthbtn {
+  width: 60px;
+  padding: 6px 0px;
+}
+form button i {
+  font-size: 10px;
+}
+.row ul {
+  padding-top: 15px;
+  position: relative;
+}
+.row ul .fa-face-frown {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 25px;
+  color: #d61717;
+}
+.row ul li {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-content: space-between;
+  padding: 5px 0px;
+  cursor: pointer;
+  overflow: hidden;
+}
+.row ul li .check-icon {
+  width: 25px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ccc;
+  border-radius: 100%;
+  font-size: 13px;
+}
+.row ul li .check-icon i {
+  color: #fff;
+  display: none;
+}
+.row ul li .check-icon.active {
+  background: #f72585;
+}
+.row ul li .check-icon.active i {
+  display: block;
+}
+.row ul li label {
+  font-size: 14px;
+  padding: 10px 40px;
+  position: relative;
+}
+.row ul li label::after {
+  content: "Completed";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 60px;
+  left: 0;
+  background-color: rgb(27, 211, 27);
+  color: #fff;
+  border-radius: 3px;
+  transition: 0.5s;
+}
+.row ul li label.active::after {
+  top: 0;
+}
+.row ul .icons {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.row ul .icons i,
+.modal .modal-content i {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100%;
+  color: #fff;
+  font-size: 13px;
+}
+.modal .modal-content i {
+  width: 25px;
+  height: 25px;
+  font-size: 11px;
+}
+.row ul .icons i:nth-child(1) {
+  color: rgb(27, 211, 27);
+}
+.row ul .icons i:nth-child(2) {
+  color: rgb(233, 17, 17);
+}
+
+/* modal */
+
+.modal {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  overflow: hidden;
+}
+.modal .modal-content {
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  transition: 0.5s;
+  transform: translateY(-100px);
+}
+.modal .modal-content.active {
+  transform: translateY(0px);
+}
+.modal .modal-content .fa-triangle-exclamation {
+  background-color: orangered;
+}
+.modal .modal-content .fa-check {
+  background-color: rgb(27, 221, 27);
+}
+.modal .modal-content .fa-face-rolling-eyes {
+  background-color: rgb(221, 98, 27);
+}
+
+.update-modal {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.update-modal form {
+  width: 90vw;
+  padding: 20px;
+  background-color: white;
+  border-radius: 5px;
+  display: flex;
+  gap: 5px;
+  transition: 0.5s;
+  transform: translateY(-100px);
+}
+.update-modal form.active {
+  transform: translateY(0px);
+}
+.update-modal form input {
+  width: 100%;
+  border: 1px solid #ccc;
+  outline: none;
+  padding: 0px 15px;
+  font-size: 13px;
+  border-radius: 5px;
+}
+
+@media all and (min-width: 500px) {
+  .container .row {
+    width: 500px;
+  }
+  .row form input {
+    padding: 10px 15px;
+  }
+  form button,
+  #deleteauthbtn {
+    padding: 10px 0px;
+  }
+  .row ul li .check-icon {
+    width: 30px;
+    height: 30px;
+  }
+  .modal .modal-content {
+    width: fit-content;
+  }
+  .update-modal form {
+    width: 500px;
+  }
+}
