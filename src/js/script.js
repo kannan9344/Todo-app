@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.querySelector("#todoForm");
   const updateform = document.querySelector("#updateForm");
-  let todoList = [];
   let index = 0;
+  let todoList = [];
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
       );
     } else {
       todoList.push(tododata);
+      localStorage.setItem("tododata", JSON.stringify(todoList));
       insertData();
       formData.set("todoinput", "");
     }
@@ -25,8 +26,10 @@ document.addEventListener("DOMContentLoaded", function () {
     e.preventDefault();
     const formData = new FormData(e.target);
     let updatedata = formData.get("updatetodo");
+    let todoData = JSON.parse(localStorage.getItem("tododata")) || [];
     if (updatedata != "") {
-      todoList[index] = updatedata;
+      todoData[index] = updatedata;
+      localStorage.setItem("tododata", JSON.stringify(todoData));
       insertData();
       updateform.classList.remove("active");
       toggelModal("Todo data was updated", " fa-solid fa-check");
@@ -35,12 +38,13 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
   function insertData() {
+    let todoData = JSON.parse(localStorage.getItem("tododata")) || [];
     const container = document.querySelector(".todocontainer");
     container.innerHTML = `<i class="fa-solid fa-face-frown"></i>`;
-    if (todoList.length > 0) {
+    if (todoData.length > 0) {
       container.innerHTML = "";
       container.style.height = "auto";
-      todoList.map((todo, index) => {
+      todoData.map((todo, index) => {
         container.innerHTML += ` <li>
                 <div class="check-icon">
                   <i class="fa-solid fa-check"></i>
@@ -89,7 +93,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 3000);
   }
   function deletetodo(id) {
-    todoList.splice(id, 1);
+    let todoData = JSON.parse(localStorage.getItem("tododata")) || [];
+    todoData.splice(id, 1);
+    localStorage.setItem("tododata", JSON.stringify(todoData));
     insertData();
     toggelModal("Todo data deleted successfully...", " fa-solid fa-check");
   }
